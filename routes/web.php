@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,14 @@ Route::get('/singup', [ClientController::class, 'singup']);
 //  <!-- Admin Route List Start -->
 
 Route::get('/admin',[AdminController::class, 'dashboard']);
+Route::get('/addcategory', [AdminController::class, 'addcategory'])->name('category.create');
+Route::get('/addproduct', [AdminController::class, 'addproduct'])->name('product.create');
+Route::get('/addslider', [AdminController::class, 'addslider'])->name('slider.create');
+
+Route::get('/categories',[ProductController::class, 'categories'])->name('category.index');
+Route::get('/products',[ProductController::class, 'products'])->name('product.index');
+Route::get('/sliders',[SliderController::class, 'sliders'])->name('slider.index');
+// Route::get('/orders',[AdminController::class, 'orders'])->name('order.store');
 
 //  <!-- Admin Route List End -->
 

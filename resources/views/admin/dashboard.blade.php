@@ -291,3 +291,7 @@
 
 @endsection
 
+@section('scripts')
+    <!-- Custom js for this page-->
+    <script src="{{ asset('backend') }}/js/dashboard.js"></script>
+@endsection

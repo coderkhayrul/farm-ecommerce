@@ -59,8 +59,7 @@
     <script src="{{ asset('backend') }}/js/settings.js"></script>
     <script src="{{ asset('backend') }}/js/todolist.js"></script>
     <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{{ asset('backend') }}/js/dashboard.js"></script>
+    @yield('scripts')
     <!-- End custom js for this page-->
 </body>
 

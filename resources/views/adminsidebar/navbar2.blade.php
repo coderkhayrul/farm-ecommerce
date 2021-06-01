@@ -15,10 +15,10 @@
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="basic_elements.html">Add Category</a>
+                    <li class="nav-item"><a class="nav-link" href="{{ URL::to('/addcategory') }}">Add Category</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="advanced_elements.html">Add Product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="validation.html">Add Slider</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ URL::to('/addproduct') }}">Add Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ URL::to('/addslider') }}">Add Slider</a></li>
                     <li class="nav-item"><a class="nav-link" href="wizard.html">Wizard</a></li>
                 </ul>
             </div>
@@ -31,10 +31,10 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="basic-table.html">Categories</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="data-table.html">Products</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="js-grid.html">Sliders</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="sortable-table.html">Orders</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ URL::to('/categories') }}">Categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ URL::to('/products') }}">Products</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ URL::to('sliders') }}">Sliders</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ URL::to('orders') }}">Orders</a>
                     </li>
                 </ul>
             </div>
