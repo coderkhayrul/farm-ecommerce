@@ -45,6 +45,8 @@ Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');
 Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('category.create');
 Route::post('/savecategory', [CategoryController::class, 'savecategory'])->name('category.store');
+Route::get('/edit/{id}', [CategoryController::class, 'editcategory'])->name('category.edit');
+Route::put('/updatecategory/{id}', [CategoryController::class, 'updatecategory'])->name('category.update');
 // Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
 Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('product.create');

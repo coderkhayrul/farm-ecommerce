@@ -29,4 +29,18 @@ class CategoryController extends Controller
             return redirect()->route('category.create')->with('status1', 'The '.$request->category_name.' Category already exist');
         }
     }
+
+    public function editcategory($id) {
+        $category = Category::findOrFail($id);
+
+        return view('admin.editcategory')->with('category', $category);
+    }
+
+    public function updatecategory(Request $request, $id) {
+        $category = Category::findOrFail($id);
+        $category->category_name = $request->category_name;
+        $category->update();
+
+        return redirect()->route('category.index')->with('status', 'The '.$request->category_name.' Category has been updated successfully');
+    }
 }

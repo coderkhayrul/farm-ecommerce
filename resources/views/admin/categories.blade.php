@@ -6,6 +6,13 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Categories</h4>
+        <!-- Get Session Status  Start-->
+        @if (Session::has('status') )
+        <div class="alert alert-success text-white">
+            {{ Session::get('status') }}
+        </div>
+        @endif
+        <!-- Get Session Status End -->
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -24,8 +31,8 @@
                                     <td>{{ $increment }}</td>
                                     <td>{{ $category->category_name }}</td>
                                     <td>
-                                        <button class="btn btn-outline-primary">Edit</button>
-                                        <button class="btn btn-outline-danger">Delete</button>
+                                        <button class="btn btn-outline-primary" onclick="window.location = '{{ url('/edit/'.$category->id) }}'">Edit</button>
+                                        <button class="btn btn-outline-danger" onclick="window.location = '{{ url('/delete/'.$category->id) }}'">Delete</button>
                                     </td>
                                 </tr>
                                 {{ Form::hidden('', $increment = $increment + 1) }}
