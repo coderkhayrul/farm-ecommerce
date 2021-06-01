@@ -6,16 +6,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function categories() {
-        return view('admin.categories');
+    public function addproduct() {
+
+        return view('admin.addproduct');
     }
 
     public function products() {
         return view('admin.products');
-    }
-
-    public function sliders() {
-        return 'Working';
     }
 
 

@@ -38,14 +38,18 @@ Route::get('/singup', [ClientController::class, 'singup']);
 //  <!-- Admin Route List Start -->
 
 Route::get('/admin',[AdminController::class, 'dashboard']);
+// Order Route
+Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
+// Category Route
+Route::get('/categories',[AdminController::class, 'categories'])->name('category.index');
 Route::get('/addcategory', [AdminController::class, 'addcategory'])->name('category.create');
-Route::get('/addproduct', [AdminController::class, 'addproduct'])->name('product.create');
-Route::get('/addslider', [AdminController::class, 'addslider'])->name('slider.create');
-
-Route::get('/categories',[ProductController::class, 'categories'])->name('category.index');
+// Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
+Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('product.create');
+// Slider Route
+Route::get('/addslider', [SliderController::class, 'addslider'])->name('slider.create');
 Route::get('/sliders',[SliderController::class, 'sliders'])->name('slider.index');
-// Route::get('/orders',[AdminController::class, 'orders'])->name('order.store');
+
 
 //  <!-- Admin Route List End -->
 
