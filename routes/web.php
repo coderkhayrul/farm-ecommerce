@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
@@ -41,8 +42,9 @@ Route::get('/admin',[AdminController::class, 'dashboard']);
 // Order Route
 Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 // Category Route
-Route::get('/categories',[AdminController::class, 'categories'])->name('category.index');
-Route::get('/addcategory', [AdminController::class, 'addcategory'])->name('category.create');
+Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');
+Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('category.create');
+Route::post('/savecategory', [CategoryController::class, 'savecategory'])->name('category.store');
 // Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
 Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('product.create');

@@ -10,7 +10,7 @@ Add Category
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Create Category</h4>
-                {!! Form::open(['route' =>'category.create', 'class' => 'cmxform', 'method' => 'post', 'id' =>
+                {!! Form::open(['route' =>'category.store', 'class' => 'cmxform', 'method' => 'post', 'id' =>
                 'commentForm']) !!}
                 @csrf
                 <div class="form-group">
