@@ -31,8 +31,8 @@
                                     <td>{{ $increment }}</td>
                                     <td>{{ $category->category_name }}</td>
                                     <td>
-                                        <button class="btn btn-outline-primary" onclick="window.location = '{{ url('/edit/'.$category->id) }}'">Edit</button>
-                                        <a id="delete" class="btn btn-outline-danger" href="{{ URL::to('/delete/'.$category->id) }}">Delete</a>
+                                        <button class="btn btn-outline-primary" onclick="window.location = '{{ url('/edit_category/'.$category->id) }}'">Edit</button>
+                                        <a id="delete" class="btn btn-outline-danger" href="{{ URL::to('/delete_category/'.$category->id) }}">Delete</a>
                                     </td>
                                 </tr>
                                 {{ Form::hidden('', $increment = $increment + 1) }}

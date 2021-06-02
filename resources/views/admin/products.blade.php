@@ -6,6 +6,18 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Products</h4>
+        <!-- Get Session Status  Start-->
+        @if (Session::has('status') )
+        <div class="alert alert-success text-white">
+            {{ Session::get('status') }}
+        </div>
+        @endif
+        @if (Session::has('status1') )
+        <div class="alert alert-danger text-white">
+            {{ Session::get('status1') }}
+        </div>
+        @endif
+        <!-- Get Session Status End -->
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -38,7 +50,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-outline-primary">Edit</button>
+                                    <button class="btn btn-outline-primary" onclick="window.location = '{{ url('/edit_product/'.$product->id) }}'">Edit</button>
                                     <a href="" class="btn btn-outline-danger" id="delete">Delete</a>
                                     @if ($product->status === 1)
                                         <button class="btn btn-outline-warning">Unactivated</button>

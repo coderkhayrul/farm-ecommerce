@@ -45,14 +45,16 @@ Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');
 Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('category.create');
 Route::post('/savecategory', [CategoryController::class, 'savecategory'])->name('category.store');
-Route::get('/edit/{id}', [CategoryController::class, 'editcategory'])->name('category.edit');
+Route::get('/edit_category/{id}', [CategoryController::class, 'editcategory'])->name('category.edit');
 Route::put('/updatecategory/{id}', [CategoryController::class, 'updatecategory'])->name('category.update');
-Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+Route::get('/delete_category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 
 // Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
 Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('product.create');
 Route::post('/saveproduct', [ProductController::class, 'saveproduct'])->name('product.store');
+Route::get('/edit_product/{id}', [ProductController::class, 'editproduct'])->name('product.edit');
+Route::put('/update_product/{id}', [ProductController::class, 'updateproduct'])->name('product.update');
 // Slider Route
 Route::get('/addslider', [SliderController::class, 'addslider'])->name('slider.create');
 Route::get('/sliders',[SliderController::class, 'sliders'])->name('slider.index');
