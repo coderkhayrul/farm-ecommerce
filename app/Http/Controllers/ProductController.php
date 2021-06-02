@@ -115,4 +115,28 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('status', 'The '.$request->product_name.' Product has been updated successfully');
     }
 
+    public function deleteproduct($id) {
+        $product = Product::findOrFail($id);
+        if ($product->product_image != 'noimage.jpg') {
+            Storage::delete(['public/product_image/'.$product->product_image]);
+        }
+        $product->delete();
+        return redirect()->route('product.index')->with('status', 'The '.$product->product_name.' Product has been deleted successfully');
+
+    }
+
+    // ACTIVITED & UNACTIVITED
+    public function activated($id) {
+        $product = Product::findOrFail($id);
+        $product->status = 1;
+        $product->update();
+        return back()->with('status', 'The '.$product->product_name.' Product has been Activated successfully');
+    }
+    public function unactivated($id) {
+        $product = Product::findOrFail($id);
+        $product->status = 0;
+        $product->update();
+        return back()->with('status', 'The '.$product->product_name.' Product has been Unactivated successfully');
+    }
+
 }

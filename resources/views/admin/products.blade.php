@@ -51,11 +51,11 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-outline-primary" onclick="window.location = '{{ url('/edit_product/'.$product->id) }}'">Edit</button>
-                                    <a href="" class="btn btn-outline-danger" id="delete">Delete</a>
+                                    <a href="{{ route('product.delete',$product->id) }}" class="btn btn-outline-danger" id="delete">Delete</a>
                                     @if ($product->status === 1)
-                                        <button class="btn btn-outline-warning">Unactivated</button>
+                                        <button class="btn btn-outline-warning" onclick="window.location = '{{ url('/unactivated_product/'.$product->id) }}'">Unactivated</button>
                                     @else
-                                        <button class="btn btn-outline-success">Activated</button>
+                                        <button class="btn btn-outline-success" onclick="window.location = '{{ url('/activated_product/'.$product->id) }}'">Activated</button>
                                     @endif
                                 </td>
                             </tr>

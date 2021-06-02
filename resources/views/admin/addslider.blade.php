@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Create Slider</h4>
-                    {!! Form::open(['route' =>'category.create', 'class' => 'cmxform', 'method' => 'post', 'id' => 'commentForm']) !!}
+                    {!! Form::open(['route' =>'sldier.store', 'class' => 'cmxform', 'method' => 'post', 'id' => 'commentForm']) !!}
                         @csrf
                         <div class="form-group">
                             {{ Form::label('', 'Description One', ['for' => 'description_one']) }}
@@ -24,10 +24,6 @@
                         <div class="form-group">
                             {{ Form::label('', 'Slider Image', ['for' => 'slider_image']) }}
                             {{ Form::file('slider_image', ['class' => 'form-control']) }}
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('', 'Slider Status', ['for' => 'slider_checkbox']) }}
-                            {{ Form::checkbox('slider_status', '', 'true', ['class' => 'form-control']) }}
                         </div>
                         {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}

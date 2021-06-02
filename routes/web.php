@@ -55,9 +55,20 @@ Route::get('/addproduct', [ProductController::class, 'addproduct'])->name('produ
 Route::post('/saveproduct', [ProductController::class, 'saveproduct'])->name('product.store');
 Route::get('/edit_product/{id}', [ProductController::class, 'editproduct'])->name('product.edit');
 Route::put('/update_product/{id}', [ProductController::class, 'updateproduct'])->name('product.update');
+Route::get('/deleteproduct/{id}', [ProductController::class, 'deleteproduct'])->name('product.delete');
+
+Route::get('/activated_product/{id}', [ProductController::class, 'activated'])->name('product.activated');
+Route::get('/unactivated_product/{id}', [ProductController::class, 'unactivated'])->name('product.unactivated');
+
+
+
 // Slider Route
-Route::get('/addslider', [SliderController::class, 'addslider'])->name('slider.create');
 Route::get('/sliders',[SliderController::class, 'sliders'])->name('slider.index');
+Route::get('/addslider', [SliderController::class, 'addslider'])->name('slider.create');
+Route::post('/saveslider',[SliderController::class, 'saveslider'])->name('sldier.store');
+Route::get('/editslider/{id}',[SliderController::class, 'editslider'])->name('slider.edit');
+Route::put('/updateslider/{id}',[SliderController::class, 'updateslider'])->name('slider.update');
+Route::get('/deleteslider/{id}',[SliderController::class, 'deleteslider'])->name('slider.delete');
 
 
 //  <!-- Admin Route List End -->
