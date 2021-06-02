@@ -9,7 +9,19 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Product</h4>
+                    <h4 class="card-title">Create Product</h4>
+                    <!-- Get Session Status Start-->
+                    @if (Session::has('status') )
+                    <div class="alert alert-success text-white">
+                        {{ Session::get('status') }}
+                    </div>
+                    @endif
+                    @if (Session::has('status1') )
+                    <div class="alert alert-danger text-white">
+                        {{ Session::get('status1') }}
+                    </div>
+                    @endif
+                    <!-- Get Session Status End -->
                     {!! Form::open(['route' =>'product.store', 'class' => 'cmxform', 'method' => 'post', 'id' => 'commentForm','enctype' => 'multipart/form-data']) !!}
                         @csrf
                         <div class="form-group">
@@ -23,16 +35,12 @@
 
                         <div class="form-group">
                             {{ Form::label('', 'Product Category', ['for' => 'product_category']) }}
-                            {{ Form::select('product_category', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Category' , 'class' => 'form-control']) }}
+                            {{ Form::select('product_category', $categories, null, ['placeholder' => 'Select Category' , 'class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('', 'Product Image', ['for' => 'product_image']) }}
                             {{ Form::file('product_image', ['class' => 'form-control']) }}
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('', 'Product Status', ['for' => 'product_checkbox']) }}
-                            {{ Form::checkbox('product_status', '', 'true', ['class' => 'form-control']) }}
                         </div>
                         {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}
