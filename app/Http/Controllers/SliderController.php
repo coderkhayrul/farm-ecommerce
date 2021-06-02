@@ -26,43 +26,82 @@ class SliderController extends Controller
             'slider_image' => 'image|nullable|max:1999'
 
         ]);
-            // Slider Image Store
-            if ($request->hasFile('slider_image')) {
-                // get filename with ext
-                $filenamewithext = $request->file('slider_image')->getClientOriginalName();
+        // Slider Image Store
+        if ($request->hasFile('slider_image')) {
+            // get filename with ext
+            $filenamewithext = $request->file('slider_image')->getClientOriginalName();
 
-                //  get filename
-                $filename = pathinfo($filenamewithext, PATHINFO_FILENAME);
+            //  get filename
+            $filename = pathinfo($filenamewithext, PATHINFO_FILENAME);
 
-                //get just extension
-                $extension = $request->file('slider_image')->getClientOriginalExtension();
+            //get just extension
+            $extension = $request->file('slider_image')->getClientOriginalExtension();
 
-                //file name to store
-                $filenametostore = $filename.'_'.time().'.'.$extension;
+            //file name to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
 
-                //upload image
-                $request->file('slider_image')->storeAs('public/slider_image', $filenametostore);
-            }else {
-                $filenametostore = 'noimage.jpg';
+            //upload image
+            $request->file('slider_image')->storeAs('public/slider_image', $filenametostore);
+        }else {
+            $filenametostore = 'noimage.jpg';
+        }
+        // Slider Save
+        $slider = new Slider();
+        $slider->description1 = $request->description_one;
+        $slider->description2 = $request->description_two;
+        $slider->slider_image = $filenametostore;
+        $slider->status = 1;
+
+        $slider->save();
+
+        return redirect()->route('slider.create')->with('status', 'The Slider has been Create successfully');
+    }
+
+    public function editslider($id) {
+
+        $slider = Slider::findOrFail($id);
+
+        return view('admin.editslider')->with('slider', $slider);
+    }
+
+    public function updateslider(Request $request, $id) {
+        // Product Validation
+        $this->validate($request, [
+        'description_one' => 'required',
+        'description_two' => 'required',
+        'slider_image' => 'image|nullable|max:1999'
+
+        ]);
+        // Slider Save
+        $slider = Slider::findOrFail($request->id);
+        $slider->description1 = $request->description_one;
+        $slider->description2 = $request->description_two;
+
+        // IMAGE UPDATE
+        if ($request->hasFile('slider_image')) {
+            $filenamewithext = $request->file('slider_image')->getClientOriginalName();
+            //  get filename
+            $filename = pathinfo($filenamewithext, PATHINFO_FILENAME);
+
+            //get just extension
+            $extension = $request->file('slider_image')->getClientOriginalExtension();
+
+            //file name to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+            //upload image
+            $path = $request->file('slider_image')->storeAs('public/slider_image', $filenametostore);
+
+            // OLD IMAGE DELETE
+            $old_image = Slider::findOrFail($request->id);
+            if ($old_image->slider_image != 'noimage.jpg') {
+                Storage::delete(['public/slider_image/'.$old_image->slider_image]);
             }
-            // Slider Save
-            $slider = new Slider();
-            $slider->description1 = $request->description_one;
-            $slider->description2 = $request->description_two;
             $slider->slider_image = $filenametostore;
-            $slider->status = 1;
+        }
+        $slider->save();
 
-            $slider->save();
-
-            return redirect()->route('slider.create')->with('status', 'The Slider has been Create successfully');
-    }
-
-    public function editslider() {
-        return view('admin.addslider');
-    }
-
-    public function updateslider($id) {
-        return view('admin.sliders');
+        return redirect()->route('slider.index')->with('status', 'Slider has been updated successfully');
     }
 
     public function deleteslider($id) {
