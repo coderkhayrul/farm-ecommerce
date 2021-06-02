@@ -70,6 +70,9 @@ Route::get('/editslider/{id}',[SliderController::class, 'editslider'])->name('sl
 Route::put('/updateslider/{id}',[SliderController::class, 'updateslider'])->name('slider.update');
 Route::get('/deleteslider/{id}',[SliderController::class, 'deleteslider'])->name('slider.delete');
 
+Route::get('/activated_slider/{id}', [SliderController::class, 'activated'])->name('slider.activated');
+Route::get('/unactivated_slider/{id}', [SliderController::class, 'unactivated'])->name('slider.unactivated');
+
 
 //  <!-- Admin Route List End -->
 
