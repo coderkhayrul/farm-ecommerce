@@ -20,11 +20,14 @@ class CategoryController extends Controller
     }
 
     public function savecategory(Request $request) {
+        $this->validate($request, [
+            'category_name' => 'required'
+        ]);
         // dd($request->category_name);
         $checkcategory = Category::where('category_name', $request->category_name)->first();
         if (!$checkcategory) {
             Category::create($request->all());
-            return redirect()->route('category.create')->with('status', 'The'.$request->category_name.' Category has been saved successfully');
+            return redirect()->route('category.create')->with('status', 'The '.$request->category_name.' Category has been saved successfully');
         }else {
             return redirect()->route('category.create')->with('status1', 'The '.$request->category_name.' Category already exist');
         }
@@ -42,5 +45,12 @@ class CategoryController extends Controller
         $category->update();
 
         return redirect()->route('category.index')->with('status', 'The '.$request->category_name.' Category has been updated successfully');
+    }
+
+    public function delete($id) {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('category.index')->with('status', 'The '.$category->category_name.' Category has been Delete successfully');
     }
 }

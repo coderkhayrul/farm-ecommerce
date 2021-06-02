@@ -58,8 +58,22 @@
     <script src="{{ asset('backend') }}/js/template.js"></script>
     <script src="{{ asset('backend') }}/js/settings.js"></script>
     <script src="{{ asset('backend') }}/js/todolist.js"></script>
+    <script src="{{ asset('backend') }}/js/bootbox.min.js"></script>
     <!-- endinject -->
     @yield('scripts')
+
+    <script>
+        $(document).on("click", "#delete", function (e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            bootbox.confirm("Do you really want to delete this element ?", function (confirmed) {
+                if (confirmed) {
+                    window.location.href = link;
+                };
+            });
+        });
+
+    </script>
     <!-- End custom js for this page-->
 </body>
 

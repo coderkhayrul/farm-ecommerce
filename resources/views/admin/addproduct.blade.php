@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add Product</h4>
-                    {!! Form::open(['route' =>'product.create', 'class' => 'cmxform', 'method' => 'post', 'id' => 'commentForm']) !!}
+                    {!! Form::open(['route' =>'product.store', 'class' => 'cmxform', 'method' => 'post', 'id' => 'commentForm','enctype' => 'multipart/form-data']) !!}
                         @csrf
                         <div class="form-group">
                             {{ Form::label('', 'Product Name', ['for' => 'product_name']) }}
@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             {{ Form::label('', 'Product Category', ['for' => 'product_category']) }}
-                            {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Category' , 'class' => 'form-control']) }}
+                            {{ Form::select('product_category', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select Category' , 'class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
