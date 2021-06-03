@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -137,6 +139,19 @@ class ProductController extends Controller
         $product->status = 0;
         $product->update();
         return back()->with('status', 'The '.$product->product_name.' Product has been Unactivated successfully');
+    }
+
+    // CART
+    public function addToCart($id) {
+        $product = Product::findOrFail($id);
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        // dd(Session::get('cart'));
+        return redirect('/shop');
     }
 
 }

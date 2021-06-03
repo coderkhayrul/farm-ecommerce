@@ -42,6 +42,9 @@ Route::get('/admin',[AdminController::class, 'dashboard']);
 // Order Route
 Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 
+// Cart Route
+Route::get('addToCart/{id}', [ProductController::class, 'addToCart']);
+
 // Category Route
 Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');
 Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('category.create');
