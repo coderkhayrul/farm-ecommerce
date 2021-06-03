@@ -30,6 +30,9 @@ Route::get('/cart', [ClientController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [ClientController::class, 'checkout'])->name('client.checkout');
 Route::get('/login', [ClientController::class, 'login'])->name('client.login');
 Route::get('/singup', [ClientController::class, 'singup'])->name('client.singup');
+
+Route::post('/postcheckout', [ClientController::class, 'postcheckout'])->name('client.postcheckout');
+
 //  <!-- Client Route List End-->
 
 // -----------------------------

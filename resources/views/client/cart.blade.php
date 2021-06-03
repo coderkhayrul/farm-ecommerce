@@ -51,7 +51,7 @@ Cart
 
                                 <td class="price">${{ $product['product_price'] }}</td>
 
-                                <{!! Form::open(['route'=>'cart.update','method' => 'post']) !!}
+                                {!! Form::open(['route'=>'cart.update','method' => 'post']) !!}
                                     @csrf
                                     <td class="quantity">
                                         <div class="input-group mb-3">
@@ -68,7 +68,9 @@ Cart
                             </tr><!-- END TR-->
                             @endforeach
                             @else
-
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                @endif
                             @endif
                         </tbody>
                     </table>
@@ -131,7 +133,7 @@ Cart
                         <span>$17.60</span>
                     </p>
                 </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                <p><a href="{{ route('client.checkout') }}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
             </div>
         </div>
     </div>
