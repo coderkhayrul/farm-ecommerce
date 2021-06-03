@@ -24,23 +24,24 @@ use Illuminate\Support\Facades\Route;
 
 
 //  <!-- Client Route List Start-->
-Route::get('/', [ClientController::class, 'home']);
-Route::get('/shop', [ClientController::class, 'shop']);
-Route::get('/cart', [ClientController::class, 'cart']);
-Route::get('/checkout', [ClientController::class, 'checkout']);
-Route::get('/login', [ClientController::class, 'login']);
-Route::get('/singup', [ClientController::class, 'singup']);
+Route::get('/', [ClientController::class, 'home'])->name('client.home');
+Route::get('/shop', [ClientController::class, 'shop'])->name('client.shop');
+Route::get('/cart', [ClientController::class, 'cart'])->name('client.cart');
+Route::get('/checkout', [ClientController::class, 'checkout'])->name('client.checkout');
+Route::get('/login', [ClientController::class, 'login'])->name('client.login');
+Route::get('/singup', [ClientController::class, 'singup'])->name('client.singup');
 //  <!-- Client Route List End-->
 
 // -----------------------------
-// #############################
+// <- --- CLIENT OR ADMIN --- ->
 // -----------------------------
 
 //  <!-- Admin Route List Start -->
-
 Route::get('/admin',[AdminController::class, 'dashboard']);
+
 // Order Route
 Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
+
 // Category Route
 Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');
 Route::get('/addcategory', [CategoryController::class, 'addcategory'])->name('category.create');
@@ -48,6 +49,8 @@ Route::post('/savecategory', [CategoryController::class, 'savecategory'])->name(
 Route::get('/edit_category/{id}', [CategoryController::class, 'editcategory'])->name('category.edit');
 Route::put('/updatecategory/{id}', [CategoryController::class, 'updatecategory'])->name('category.update');
 Route::get('/delete_category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+Route::get('/view_by_cat/{name}', [CategoryController::class, 'view_by_cat']);
 
 // Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
@@ -60,8 +63,6 @@ Route::get('/deleteproduct/{id}', [ProductController::class, 'deleteproduct'])->
 Route::get('/activated_product/{id}', [ProductController::class, 'activated'])->name('product.activated');
 Route::get('/unactivated_product/{id}', [ProductController::class, 'unactivated'])->name('product.unactivated');
 
-
-
 // Slider Route
 Route::get('/sliders',[SliderController::class, 'sliders'])->name('slider.index');
 Route::get('/addslider', [SliderController::class, 'addslider'])->name('slider.create');
@@ -72,8 +73,6 @@ Route::get('/deleteslider/{id}',[SliderController::class, 'deleteslider'])->name
 
 Route::get('/activated_slider/{id}', [SliderController::class, 'activated'])->name('slider.activated');
 Route::get('/unactivated_slider/{id}', [SliderController::class, 'unactivated'])->name('slider.unactivated');
-
-
 //  <!-- Admin Route List End -->
 
 

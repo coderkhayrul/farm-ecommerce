@@ -39,7 +39,7 @@
                                 <td>{{ $increment }}</td>
                                 <td><img src="/storage/slider_image/{{ $slider->slider_image}}" alt=""></td>
                                 <td>{{ $slider->description1 }}</td>
-                                <td>${{ $slider->description2 }}</td>
+                                <td>{{ $slider->description2 }}</td>
                                 <td>
                                     @if ($slider->status === 1)
                                     <label class="badge badge-success">Activated</label>
