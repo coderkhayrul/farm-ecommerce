@@ -44,6 +44,9 @@ Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 
 // Cart Route
 Route::get('addToCart/{id}', [ProductController::class, 'addToCart']);
+Route::post('updateQty', [ClientController::class, 'updateQty'])->name('cart.update');
+Route::get('removeitem/{id}', [ClientController::class, 'removeItem'])->name('cart.remove');
+
 
 // Category Route
 Route::get('/categories',[CategoryController::class, 'categories'])->name('category.index');

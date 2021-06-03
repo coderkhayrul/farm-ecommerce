@@ -13,7 +13,8 @@
 
                 <li class="nav-item cta cta-colored">
                     <a href="{{ URL::to('/cart') }}" class="nav-link">
-                        <span class="icon-shopping_cart"></span>[0]
+                        <span class="icon-shopping_cart"></span>
+                        [{{ Session::has('cart')? Session::get('cart')->totalQty:0  }}]
                     </a>
                 </li>
                 <li class="nav-item active"><a href="{{ URL::to('/login') }}" class="nav-link">login</a></li>

@@ -22,15 +22,14 @@ Add Category
                 </div>
                 @endif
                 <!-- Get Session Status End -->
-
                 {!! Form::open(['route' =>'category.store', 'class' => 'cmxform', 'method' => 'post', 'id' =>
-                'commentForm']) !!}
-                @csrf
-                <div class="form-group">
-                    {{ Form::label('', 'Product Category', ['for' => 'cname']) }}
-                    {{ Form::text('category_name', '', ['class' => 'form-control', 'minlength' => '2']) }}
-                </div>
-                {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
+                    'commentForm']) !!}
+                    @csrf
+                    <div class="form-group">
+                        {{ Form::label('', 'Product Category', ['for' => 'cname']) }}
+                        {{ Form::text('category_name', '', ['class' => 'form-control', 'minlength' => '2']) }}
+                    </div>
+                    {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
                 {!! Form::close() !!}
             </div>
         </div>
