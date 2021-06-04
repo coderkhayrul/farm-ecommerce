@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -81,12 +82,23 @@ class ClientController extends Controller
 
         Stripe::setApiKey('sk_test_51IyMkAJ1VeIVckU3reASjOpbrTI52ZESWpI0q8zyt9k51VoEp5mY82YQKUAKzuB1hTrklnFw4lkUvlxqwdTUNWXb00miRhwJr7');
         try{
-            Charge::create(array(
+            $charg = Charge::create(array(
                 "amount" => $cart->totalPrice * 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtainded with Stripe.js
                 "description" => "Test Charge"
             ));
+
+            // GET ORDER INFO
+            $order = new Order();
+            $order->name = $request->name;
+            $order->address = $request->address;
+            $order->cart = serialize($cart);
+            $order->payment_id = $charg->id;
+
+            $order->save();
+
+
         } catch(\Exception $e){
             Session::put('error', $e->getMessage());
             return redirect('/checkout');
