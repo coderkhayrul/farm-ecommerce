@@ -6,6 +6,11 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Orders</h4>
+        {{-- @if (Session::has('error'))
+            <div class="alert alert-danger">
+                {{ Session::get('error') }}
+            </div>
+        @endif --}}
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -28,14 +33,12 @@
                                 <td>{{ $order->name }}</td>
                                 <td>{{ $order->address }}</td>
                                 <td>
-                                    {{-- @foreach ($order->cart->items as $item)
-                                        {{ $item['product_name'].',' }}
-                                    @endforeach --}}
-                                    {{ $order->cart }}
+                                    Fixing
                                 </td>
+
                                 <td>{{ $order->payment_id }}</td>
                                 <td>
-                                    <button class="btn btn-outline-primary">View</button>
+                                    <button class="btn btn-outline-primary" onclick="window.location = '{{ url('view_pdf/'.$order->id) }}'">View</button>
                                 </td>
                             </tr>
                             {{ Form::hidden('', $increment = $increment + 1) }}

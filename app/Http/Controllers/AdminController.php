@@ -19,10 +19,8 @@ class AdminController extends Controller
 
         // $orders->transform(function($order, $key){
         //     $order->cart = unserialize($order->cart);
-
         //     return $order;
         // });
-
         return view('admin.orders')->with('orders', $orders);
     }
 }

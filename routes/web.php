@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,11 @@ Route::get('/deleteslider/{id}',[SliderController::class, 'deleteslider'])->name
 
 Route::get('/activated_slider/{id}', [SliderController::class, 'activated'])->name('slider.activated');
 Route::get('/unactivated_slider/{id}', [SliderController::class, 'unactivated'])->name('slider.unactivated');
+
+// PDF CONVATOR ROUTE
+Route::get('/view_pdf/{id}',[PdfController::class, 'view_pdf'])->name('pdf.view');
+
+
 //  <!-- Admin Route List End -->
 
 
