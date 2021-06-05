@@ -17,8 +17,11 @@
                         [{{ Session::has('cart')? Session::get('cart')->totalQty:0  }}]
                     </a>
                 </li>
-                <li class="nav-item active"><a href="{{ URL::to('/login') }}" class="nav-link">login</a></li>
-
+                @if (Session::has('client'))
+                    <li class="nav-item active"><a href="{{ URL::to('/logout') }}" class="nav-link">Logout</a></li>
+                @else
+                    <li class="nav-item active"><a href="{{ URL::to('/login') }}" class="nav-link">login</a></li>
+                @endif
             </ul>
         </div>
     </div>

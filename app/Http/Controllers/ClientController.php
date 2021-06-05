@@ -68,6 +68,12 @@ class ClientController extends Controller
 
 
     public function checkout() {
+
+        if (!Session::has('client')) {
+
+            return redirect('login');
+        }
+
         if (!Session::has('cart')) {
             return back();
         }
@@ -153,6 +159,11 @@ class ClientController extends Controller
             return back()->with('error', 'You do not have an account! ');
         }
 
+    }
+
+    public function logout() {
+        Session::forget('client');
+        return back();
     }
 
 }

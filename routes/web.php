@@ -31,6 +31,8 @@ Route::get('/cart', [ClientController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [ClientController::class, 'checkout'])->name('client.checkout');
 Route::get('/login', [ClientController::class, 'login'])->name('client.login');
 Route::get('/singup', [ClientController::class, 'singup'])->name('client.singup');
+Route::get('/logout', [ClientController::class, 'logout'])->name('client.logout');
+
 Route::post('/createaccount', [ClientController::class, 'createaccount'])->name('client.createaccount');
 Route::post('/accessaccounts', [ClientController::class, 'accessaccounts'])->name('client.accessaccounts');
 
