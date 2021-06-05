@@ -32,6 +32,7 @@ Route::get('/checkout', [ClientController::class, 'checkout'])->name('client.che
 Route::get('/login', [ClientController::class, 'login'])->name('client.login');
 Route::get('/singup', [ClientController::class, 'singup'])->name('client.singup');
 Route::post('/createaccount', [ClientController::class, 'createaccount'])->name('client.createaccount');
+Route::post('/accessaccounts', [ClientController::class, 'accessaccounts'])->name('client.accessaccounts');
 
 Route::post('/postcheckout', [ClientController::class, 'postcheckout'])->name('client.postcheckout');
 

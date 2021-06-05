@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
@@ -110,10 +111,6 @@ class ClientController extends Controller
         return redirect('/cart')->with('success', 'Purchase accomplished successfully !');
     }
 
-    public function login() {
-        return view('client.login');
-    }
-
     public function singup() {
         return view('client.singup');
     }
@@ -130,6 +127,32 @@ class ClientController extends Controller
         $client->save();
 
         return back()->with('status', "Your Account has been created successfully");
+    }
+
+    public function login() {
+        return view('client.login');
+    }
+
+    public function accessaccounts(Request $request) {
+        $this->validate($request, [
+            'email' => 'email|required',
+            'password' => 'required|min:6',
+        ]);
+
+        $client = Client::where('email', $request->email)->first();
+        if ($client) {
+            if (Hash::check($request->password, $client->password)) {
+                Session::put('client', $client);
+                return redirect('/shop');
+                // return back()->with('status', "You'r Login Success");
+            }else {
+                return back()->with('error', 'Worng Password');
+            }
+
+        }else {
+            return back()->with('error', 'You do not have an account! ');
+        }
+
     }
 
 }

@@ -8,7 +8,24 @@ Login
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <!-- Get Session Status  Start-->
+            @if (Session::has('error') )
+            <div class="alert alert-danger text-white">
+                {{ Session::get('error') }}
+            </div>
+            @endif
+            @if (count($errors) > 0 )
+            <div class="alert alert-danger text-white">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li> {{ $error }} </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <!-- Get Session Status End -->
+            <form action="{{ route('client.accessaccounts') }}" method="POST" class="login100-form validate-form">
+                @csrf
                 <a href="{{ URL::to('/') }}">
                     <span class="login100-form-logo">
                         <i class="zmdi zmdi-landscape"></i>
@@ -18,13 +35,13 @@ Login
                     Log in
                 </span>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                    <input class="input100" type="text" name="username" placeholder="Username">
+                <div class="wrap-input100 validate-input" data-validate="Enter Email">
+                    <input class="input100" type="text" name="email" placeholder="Email">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
+                    <input class="input100" type="password" name="password" placeholder="Password">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
 
