@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Models\Category;
+use App\Models\Client;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
@@ -115,6 +116,20 @@ class ClientController extends Controller
 
     public function singup() {
         return view('client.singup');
+    }
+
+    public function createaccount(Request $request) {
+        $this->validate($request, [
+            'email' => 'email|required|unique:clients',
+            'password' => 'required|min:6',
+        ]);
+        $client = new Client();
+        $client->email = $request->email;
+        $client->password = bcrypt($request->password);
+
+        $client->save();
+
+        return back()->with('status', "Your Account has been created successfully");
     }
 
 }

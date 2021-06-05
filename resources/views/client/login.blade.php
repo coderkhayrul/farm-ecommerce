@@ -42,8 +42,8 @@ Login
                 </div>
 
                 <div class="text-center p-t-90">
-                    <a class="txt1" href="#">
-                        Forgot Password?
+                    <a class="txt1" href="/singup">
+                        Don,t have an account ? Singup
                     </a>
                 </div>
             </form>
