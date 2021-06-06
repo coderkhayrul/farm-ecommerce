@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +30,9 @@ Route::get('/', [ClientController::class, 'home'])->name('client.home');
 Route::get('/shop', [ClientController::class, 'shop'])->name('client.shop');
 Route::get('/cart', [ClientController::class, 'cart'])->name('client.cart');
 Route::get('/checkout', [ClientController::class, 'checkout'])->name('client.checkout');
-Route::get('/login', [ClientController::class, 'login'])->name('client.login');
-Route::get('/singup', [ClientController::class, 'singup'])->name('client.singup');
-Route::get('/logout', [ClientController::class, 'logout'])->name('client.logout');
+Route::get('/client_login', [ClientController::class, 'login'])->name('client.login');
+Route::get('/client_singup', [ClientController::class, 'singup'])->name('client.singup');
+Route::get('/client_logout', [ClientController::class, 'logout'])->name('client.logout');
 
 Route::post('/createaccount', [ClientController::class, 'createaccount'])->name('client.createaccount');
 Route::post('/accessaccounts', [ClientController::class, 'accessaccounts'])->name('client.accessaccounts');
@@ -41,7 +42,7 @@ Route::post('/postcheckout', [ClientController::class, 'postcheckout'])->name('c
 //  <!-- Client Route List End-->
 
 // -----------------------------
-// <- --- CLIENT OR ADMIN --- ->
+// <!-- --- CLIENT OR ADMIN --- -->
 // -----------------------------
 
 //  <!-- Admin Route List Start -->
@@ -51,7 +52,7 @@ Route::get('/admin',[AdminController::class, 'dashboard']);
 Route::get('/orders', [AdminController::class, 'orders'])->name('orders.index');
 
 // Cart Route
-Route::get('addToCart/{id}', [ProductController::class, 'addToCart']);
+Route::get('addToCart/{id}', [ClientController::class, 'addToCart']);
 Route::post('updateQty', [ClientController::class, 'updateQty'])->name('cart.update');
 Route::get('removeitem/{id}', [ClientController::class, 'removeItem'])->name('cart.remove');
 
@@ -64,7 +65,7 @@ Route::get('/edit_category/{id}', [CategoryController::class, 'editcategory'])->
 Route::put('/updatecategory/{id}', [CategoryController::class, 'updatecategory'])->name('category.update');
 Route::get('/delete_category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 
-Route::get('/view_by_cat/{name}', [CategoryController::class, 'view_by_cat']);
+Route::get('/view_by_cat/{name}', [ClientController::class, 'view_by_cat']);
 
 // Product Route
 Route::get('/products',[ProductController::class, 'products'])->name('product.index');
@@ -95,3 +96,7 @@ Route::get('/view_pdf/{id}',[PdfController::class, 'view_pdf'])->name('pdf.view'
 //  <!-- Admin Route List End -->
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

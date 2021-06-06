@@ -32,6 +32,12 @@ class ClientController extends Controller
         return view('client.shop', compact('categories', 'products'));
     }
 
+    public function view_by_cat($name) {
+        $categories = Category::get();
+        $products = Product::where('product_category', $name)->get();
+        return view('client.shop ', compact('categories'))->with('products', $products);
+    }
+
     public function cart() {
         if (!Session::has('cart')) {
             return view('client.cart');
@@ -39,6 +45,19 @@ class ClientController extends Controller
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
         return view('client.cart', ['products' => $cart->items]);
+    }
+
+    // CART
+    public function addToCart($id) {
+        $product = Product::findOrFail($id);
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        // dd(Session::get('cart'));
+        return redirect('/shop');
     }
 
     public function updateQty(Request $request){
@@ -116,6 +135,7 @@ class ClientController extends Controller
             });
 
             $email = Session::get('client')->email;
+
             Mail::to($email)->send(new SendMail($orders));
 
 

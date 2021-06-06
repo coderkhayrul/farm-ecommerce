@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function categories() {
         $categories = Category::get();
 
@@ -59,11 +69,5 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('category.index')->with('status', 'The '.$category->category_name.' Category has been Delete successfully');
-    }
-
-    public function view_by_cat($name) {
-        $categories = Category::get();
-        $products = Product::where('product_category', $name)->get();
-        return view('client.shop ', compact('categories'))->with('products', $products);
     }
 }

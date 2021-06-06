@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function addproduct() {
         $categories = Category::all()->pluck('category_name', 'category_name');
 
@@ -140,18 +151,4 @@ class ProductController extends Controller
         $product->update();
         return back()->with('status', 'The '.$product->product_name.' Product has been Unactivated successfully');
     }
-
-    // CART
-    public function addToCart($id) {
-        $product = Product::findOrFail($id);
-
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        Session::put('cart', $cart);
-
-        // dd(Session::get('cart'));
-        return redirect('/shop');
-    }
-
 }
