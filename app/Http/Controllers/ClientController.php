@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Mail\SendMail;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Order;
@@ -10,6 +11,7 @@ use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Stripe\Charge;
@@ -94,7 +96,7 @@ class ClientController extends Controller
                 "amount" => $cart->totalPrice * 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtainded with Stripe.js
-                "description" => "Test Charge"
+                "description" => "Product Payment Recipt"
             ));
 
             // GET ORDER INFO
@@ -105,6 +107,16 @@ class ClientController extends Controller
             $order->payment_id = $charg->id;
 
             $order->save();
+
+            // MAIL SENDING
+            $orders = Order::where('payment_id', $charg->id)->get();
+            $orders->transform(function($order, $key){
+                $order->cart = unserialize($order->cart);
+                return $order;
+            });
+
+            $email = Session::get('client')->email;
+            Mail::to($email)->send(new SendMail($orders));
 
 
         } catch(\Exception $e){
