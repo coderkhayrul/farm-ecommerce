@@ -59,7 +59,7 @@ Login
                 </div>
 
                 <div class="text-center p-t-90">
-                    <a class="txt1" href="/singup">
+                    <a class="txt1" href="/client_singup">
                         Don,t have an account ? Singup
                     </a>
                 </div>

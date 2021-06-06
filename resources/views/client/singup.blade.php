@@ -52,7 +52,7 @@ Registation
                     </button>
                 </div>
                 <div class="text-center p-t-90">
-                    <a class="txt1" href="/login">
+                    <a class="txt1" href="/client_login">
                         Do you have an account ? Singin
                     </a>
                 </div>
